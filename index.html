@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashim Sarangi | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body {background:#0a0a0a;color:#fff;scroll-behavior:smooth;}
+
+nav {
+  position:fixed;width:100%;padding:20px 50px;
+  display:flex;justify-content:space-between;
+  backdrop-filter:blur(12px);z-index:100;
+}
+
+nav h1 {font-size:22px;}
+nav a {color:#aaa;margin-left:20px;text-decoration:none;transition:0.3s;}
+nav a:hover {color:#fff;}
+
+.hero {
+  height:100vh;display:flex;justify-content:center;
+  align-items:center;flex-direction:column;text-align:center;
+}
+
+.hero h1 {
+  font-size:60px;
+  background:linear-gradient(90deg,#fff,#777);
+  -webkit-background-clip:text;color:transparent;
+}
+
+.hero p {margin-top:20px;font-size:18px;color:#bbb;}
+
+.btn {
+  margin-top:30px;padding:12px 25px;border:none;
+  background:#fff;color:#000;border-radius:30px;
+  cursor:pointer;transition:0.3s;
+}
+.btn:hover {transform:scale(1.1);}
+
+section {padding:100px 50px;}
+h2 {font-size:40px;margin-bottom:40px;}
+
+.card {
+  background:#111;padding:20px;border-radius:15px;
+  margin-bottom:20px;transition:0.3s;
+}
+.card:hover {transform:translateY(-10px);}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+footer {text-align:center;padding:40px;color:#777;}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>Ashim Sarangi</h1>
+  <div>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Ashim Sarangi</h1>
+  <p>Associate Director – Quality Assurance | Salesforce Expert</p>
+  <button class="btn" onclick="window.open('https://www.linkedin.com/in/ashimsarangi/')">LinkedIn</button>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>
+    I am a seasoned professional with 10+ years of experience across banking,
+    customer service, and IT. Currently serving as Associate Director – Quality Assurance,
+    I specialize in Salesforce administration, QA leadership, and business analysis.
+    I have a strong track record of driving operational excellence, managing teams,
+    and delivering high-quality enterprise solutions.
+  </p>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+
+  <div class="card">
+    <h3>Moody's Analytics</h3>
+    <p><b>Associate Director – QA</b> (2025 – Present)</p>
+    <p><b>Assistant Director – QA</b> (2021 – 2025)</p>
+    <p>Leading QA teams, managing UAT cycles, handling escalations, and ensuring high-quality releases.</p>
+  </div>
+
+  <div class="card">
+    <h3>Production Support Lead</h3>
+    <p>Managed production issues, stakeholder communication, and SLA-driven support processes.</p>
+  </div>
+
+  <div class="card">
+    <h3>HCL Technologies</h3>
+    <p>Salesforce Administrator – Supported Sales & Service Cloud users and optimized workflows.</p>
+  </div>
+
+  <div class="card">
+    <h3>IBM Global Process Services</h3>
+    <p>Lead CRM Operations – Managed reporting, QuickBooks systems, and client interactions.</p>
+  </div>
+
+  <div class="card">
+    <h3>Barclays Bank</h3>
+    <p>Process Advisor – Delivered banking support and sales services.</p>
+  </div>
+
+  <div class="card">
+    <h3>Convergys</h3>
+    <p>Senior Customer Care Officer – Provided customer support services.</p>
+  </div>
+
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card">Quality Assurance</div>
+    <div class="card">Salesforce</div>
+    <div class="card">Business Analysis</div>
+    <div class="card">Production Support</div>
+    <div class="card">Team Leadership</div>
+    <div class="card">UAT Testing</div>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="card">Salesforce Certified Administrator</div>
+  <div class="card">Salesforce Certified Advanced Administrator</div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>📞 8882052999</p>
+  <p>📧 ashim.sarangi@yahoo.com</p>
+  <p>🔗 linkedin.com/in/ashimsarangi</p>
+</section>
+
+<footer>
+  <p>© 2026 Ashim Sarangi. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
