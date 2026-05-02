@@ -3,265 +3,1108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ashim Sarangi | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+<title>Ashim Sarangi — QA Leader & Salesforce Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+  :root {
+    --bg: #050a0e;
+    --surface: #0c1419;
+    --card: #101c24;
+    --border: #1a2d3a;
+    --accent: #00d4ff;
+    --accent2: #00ff9d;
+    --accent3: #ff6b35;
+    --text: #e8f4f8;
+    --muted: #5a7a8a;
+    --glow: 0 0 40px rgba(0, 212, 255, 0.15);
+  }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:#000;
-  color:#eaeaea;
-  overflow-x:hidden;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* MAGENTA GLOW BACKGROUND */
-body::before{
-  content:"";
-  position:fixed;
-  width:600px;height:600px;
-  background:radial-gradient(circle,#ff00cc33,transparent);
-  top:-150px;right:-150px;
-  filter:blur(120px);
-  z-index:-1;
-}
+  html { scroll-behavior: smooth; }
 
-/* NAVBAR */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-  position:sticky;
-  top:0;
-  backdrop-filter:blur(10px);
-  background:rgba(0,0,0,0.7);
-}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-.navbar a{
-  color:#ff00cc;
-  text-decoration:none;
-}
+  /* CURSOR */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(0,212,255,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease-out, width 0.3s, height 0.3s;
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height: 20px; background: var(--accent2); }
+  body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(0,255,157,0.4); }
 
-/* HERO */
-.hero{
-  text-align:center;
-  padding:100px 20px;
-}
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(5,10,14,0.95) 0%, transparent 100%);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,212,255,0.05);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
 
-.hero h1{
-  font-size:3rem;
-  background:linear-gradient(90deg,#ff00cc,#ff4dff);
-  -webkit-background-clip:text;
-  color:transparent;
-}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 8vw;
+    overflow: hidden;
+  }
 
-.hero p{
-  margin-top:10px;
-  color:#aaa;
-}
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(0,212,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(0,255,157,0.04) 0%, transparent 60%);
+  }
 
-/* SECTION */
-section{
-  max-width:1100px;
-  margin:80px auto;
-  padding:0 20px;
-}
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+  }
 
-h2{
-  margin-bottom:20px;
-  border-left:4px solid #ff00cc;
-  padding-left:10px;
-}
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
 
-/* CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  padding:20px;
-  border-radius:15px;
-  backdrop-filter:blur(10px);
-  border:1px solid transparent;
-  transition:0.3s;
-}
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
 
-.card:hover{
-  border:1px solid #ff00cc;
-  transform:translateY(-8px);
-  box-shadow:0 0 25px #ff00cc55;
-}
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-name .line { display: block; }
+  .hero-name .accent-line { color: var(--accent); }
 
-/* TIMELINE */
-.timeline{
-  border-left:2px solid #ff00cc;
-  padding-left:20px;
-}
+  .hero-title {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+    letter-spacing: 0.02em;
+  }
+  .hero-title strong { color: var(--text); font-weight: 500; }
 
-.timeline-item{
-  margin-bottom:30px;
-}
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
 
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
-  border:1px solid #ff00cc;
-  color:#ff00cc;
-  text-decoration:none;
-}
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.3s;
+    border: none;
+    cursor: none;
+  }
+  .btn-primary:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,212,255,0.3);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
 
-.btn:hover{
-  background:#ff00cc;
-  color:black;
-}
+  .hero-visual {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 320px;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.5s forwards;
+  }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  color:#777;
-}
+  .hex-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0,212,255,0.15);
+    animation: spinSlow 20s linear infinite;
+  }
+  .hex-ring::before {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: -4px; left: 50%;
+    box-shadow: 0 0 15px var(--accent);
+  }
+  .hex-ring:nth-child(2) {
+    inset: 30px;
+    border-color: rgba(0,255,157,0.1);
+    animation-direction: reverse;
+    animation-duration: 15s;
+  }
+  .hex-ring:nth-child(2)::before { background: var(--accent2); box-shadow: 0 0 15px var(--accent2); }
+  .hex-ring:nth-child(3) {
+    inset: 60px;
+    border-color: rgba(255,107,53,0.1);
+    animation-duration: 10s;
+  }
+  .hex-ring:nth-child(3)::before { background: var(--accent3); box-shadow: 0 0 15px var(--accent3); }
+  .hex-center {
+    position: absolute;
+    inset: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-align: center;
+    line-height: 1.2;
+  }
 
-/* ANIMATION */
-.hidden{
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-.show{
-  opacity:1;
-  transform:translateY(0);
-}
+  @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 8vw;
+    position: relative;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .section-label span {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 60px;
+    line-height: 1.1;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #8fa8b4;
+    font-weight: 300;
+  }
+  .about-text p { margin-bottom: 20px; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+
+  .about-cards { display: flex; flex-direction: column; gap: 16px; }
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: bottom;
+  }
+  .about-card:hover { border-color: rgba(0,212,255,0.3); transform: translateX(4px); box-shadow: var(--glow); }
+  .about-card:hover::before { transform: scaleY(1); }
+  .about-card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .about-card-title { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 4px; }
+  .about-card-text { font-size: 0.9rem; color: var(--muted); }
+
+  /* SKILLS */
+  .skills-section { background: var(--surface); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(0,212,255,0.06), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .skill-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: var(--glow); }
+  .skill-card:hover::after { opacity: 1; }
+  .skill-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .skill-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+  .skill-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .skill-bar-wrap { background: rgba(255,255,255,0.05); border-radius: 2px; height: 3px; overflow: hidden; }
+  .skill-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .skill-pct { font-size: 0.78rem; color: var(--accent); margin-top: 8px; font-weight: 600; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent) 0%, rgba(0,212,255,0.1) 80%, transparent 100%);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+  .timeline-dot {
+    position: absolute;
+    left: -39px; top: 8px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    transition: all 0.3s;
+  }
+  .timeline-item:hover .timeline-dot {
+    background: var(--accent);
+    box-shadow: 0 0 20px var(--accent);
+    transform: scale(1.3);
+  }
+  .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .timeline-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; }
+  .timeline-company { font-size: 0.88rem; color: var(--accent); font-weight: 500; margin-top: 4px; }
+  .timeline-date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .timeline-body {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    transition: all 0.3s;
+  }
+  .timeline-item:hover .timeline-body { border-color: rgba(0,212,255,0.2); }
+
+  /* CERTIFICATIONS */
+  .certs-section { background: var(--surface); }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .cert-card:hover { border-color: rgba(0,212,255,0.2); transform: translateY(-4px); box-shadow: var(--glow); }
+  .cert-card:hover::before { transform: scaleX(1); }
+  .cert-icon {
+    width: 52px; height: 52px; flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .cert-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+  .cert-issuer { font-size: 0.82rem; color: var(--accent); }
+
+  /* CONTACT */
+  .contact-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 28px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: var(--glow);
+  }
+  .contact-link .icon { font-size: 1.2rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 8vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* FLOATING PARTICLES */
+  .particles {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0;
+    animation: floatParticle linear infinite;
+  }
+  @keyframes floatParticle {
+    0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-20px) rotate(360deg); }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 6vw; }
+    .hero { padding: 0 6vw; }
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 2px; }
+
+  /* TAG BADGES */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.3s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* GLOW LINE */
+  .glow-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.3;
+    margin: 0 8vw;
+  }
+
+  /* EXPERIENCE HEADER BADGE */
+  .current-badge {
+    font-size: 0.7rem;
+    background: rgba(0,255,157,0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(0,255,157,0.3);
+    border-radius: 100px;
+    padding: 2px 10px;
+    margin-left: 10px;
+    letter-spacing: 0.08em;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="navbar">
-  <div>A.S</div>
-  <a href="https://www.linkedin.com/in/ashimsarangi" target="https://www.linkedin.com/in/ashimsarangi/">LinkedIn</a>
-</div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<div class="hero">
-  <h1>Ashim Sarangi</h1>
-  <p>Associate Director – Quality Assurance | Salesforce | 15+ Years Experience</p>
-</div>
+<div class="particles" id="particles"></div>
 
-<section>
-<h2>About Me</h2>
-<div class="card">
-<p>
-Strategic Quality Assurance Leader with over 15 years of multi-sector experience spanning Banking, IT, and Customer Service. 
-Currently spearheading QA operations at Moody’s Analytics, where I drive quality excellence through rigorous standards and high-impact cross-functional collaboration.
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-Expertise includes:
-Sector Versatility: Deep institutional knowledge in the Salesforce ecosystem and financial services.
-Operational Excellence: Proven track record of leading QA teams to deliver seamless, high-performance software solutions.
-Stakeholder Synergy: Skilled at bridging the gap between technical teams and business objectives to ensure product integrity.
-</p>
-</div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="grid-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Available for Senior Roles</div>
+    <h1 class="hero-name">
+      <span class="line">Ashim</span>
+      <span class="line accent-line">Sarangi</span>
+    </h1>
+    <p class="hero-title">
+      <strong>Associate Director — Quality Assurance</strong><br>
+      Salesforce Expert · QA Leader · Business Analyst
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">17+</div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">At Moody's Analytics</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">SF Certs</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get In Touch →</a>
+      <a href="#experience" class="btn-outline">View Work</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hex-ring"></div>
+    <div class="hex-ring"></div>
+    <div class="hex-ring"></div>
+    <div class="hex-center">QA<br>LEAD</div>
+  </div>
 </section>
 
-<section>
-<h2>Skills</h2>
-<div class="grid">
-<div class="card">Quality Assurance</div>
-<div class="card">Salesforce</div>
-<div class="card">UAT Testing</div>
-<div class="card">Production Support</div>
-<div class="card">Business Analysis</div>
-<div class="card">Process Management</div>
-</div>
+<div class="glow-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label"><span>About</span></div>
+  <h2 class="section-title reveal">The person behind<br>the process.</h2>
+
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm <strong>Ashim Sarangi</strong>, a seasoned professional with over a decade of experience spanning customer service, banking, and enterprise IT. My journey from frontline support to leading QA operations reflects a consistent drive for excellence.</p>
+      <p>Currently at <strong>Moody's Analytics</strong> as Associate Director of Quality Assurance, I spearhead monthly release cycles, coordinate with business analysts and developers, and guide my team to deliver exceptional solutions.</p>
+      <p>I discovered my passion for <strong>Salesforce</strong> at HCL in 2014, and it became the cornerstone of my transformation into a technical leader. I believe in the power of collaboration, continuous learning, and a solution-oriented mindset.</p>
+      <div class="tags">
+        <span class="tag">Gurugram, India</span>
+        <span class="tag">English · Hindi · Oriya</span>
+        <span class="tag">BSc IT — KSOU</span>
+      </div>
+    </div>
+    <div class="about-cards reveal">
+      <div class="about-card">
+        <div class="about-card-icon">🎯</div>
+        <div class="about-card-title">Quality-First Mindset</div>
+        <div class="about-card-text">Leading QA testing, UAT, and production support with zero-defect mentality across monthly release cycles.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <div class="about-card-title">Salesforce Expertise</div>
+        <div class="about-card-text">Admin-certified with deep hands-on experience in Sales Cloud, Service Cloud, workflows, and org optimization.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🤝</div>
+        <div class="about-card-title">Cross-functional Leadership</div>
+        <div class="about-card-text">Bridging business stakeholders, developers, and offshore vendors to deliver aligned, on-time outcomes.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-<h2>Experience</h2>
-<div class="timeline">
+<div class="glow-divider"></div>
 
-<div class="timeline-item">
-<h3>Moody’s Analytics</h3>
-<p>Associate Director – QA (2025–Present)</p>
-</div>
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="section-label"><span>Expertise</span></div>
+  <h2 class="section-title reveal">What I bring<br>to the table.</h2>
 
-<div class="timeline-item">
-<h3>Moody’s Analytics</h3>
-<p>Assistant Director – QA (2021–2025)</p>
-</div>
-
-<div class="timeline-item">
-<h3>Production Support Lead</h3>
-<p>2020–2021</p>
-</div>
-
-<div class="timeline-item">
-<h3>Senior Production Support Analyst</h3>
-<p>2017–2020</p>
-</div>
-
-<div class="timeline-item">
-<h3>HCL Technologies</h3>
-<p>Salesforce Admin</p>
-</div>
-
-<div class="timeline-item">
-<h3>IBM GPS</h3>
-<p>Lead CRM Operations</p>
-</div>
-
-<div class="timeline-item">
-<h3>Barclays</h3>
-<p>Process Advisor</p>
-</div>
-
-<div class="timeline-item">
-<h3>Convergys</h3>
-<p>Customer Care Officer</p>
-</div>
-
-</div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Salesforce CRM</div>
+      <div class="skill-desc">Administration, configuration, Sales/Service Cloud, workflows, reports & dashboards.</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" data-width="95"></div></div>
+      <div class="skill-pct">95%</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔬</div>
+      <div class="skill-name">Quality Assurance</div>
+      <div class="skill-desc">Test strategy, test case writing, UAT, regression testing, traceability matrices.</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" data-width="92"></div></div>
+      <div class="skill-pct">92%</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Business Analysis</div>
+      <div class="skill-desc">Requirements gathering, stakeholder management, process documentation, gap analysis.</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" data-width="88"></div></div>
+      <div class="skill-pct">88%</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🚀</div>
+      <div class="skill-name">Production Support</div>
+      <div class="skill-desc">Incident management, SLA adherence, critical outage resolution, vendor coordination.</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div>
+      <div class="skill-pct">90%</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">👥</div>
+      <div class="skill-name">Team Leadership</div>
+      <div class="skill-desc">Managing QA teams, shift planning, mentoring analysts, escalation handling.</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div>
+      <div class="skill-pct">85%</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">CRM Operations</div>
+      <div class="skill-desc">Sybase, QuickBooks support, reporting dashboards, process improvement initiatives.</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div>
+      <div class="skill-pct">80%</div>
+    </div>
+  </div>
 </section>
 
-<section>
-<h2>Certifications</h2>
-<div class="grid">
-<div class="card">Salesforce Certified Administrator</div>
-<div class="card">Salesforce Advanced Administrator</div>
-</div>
+<div class="glow-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label"><span>Experience</span></div>
+  <h2 class="section-title reveal">17 years of<br>building excellence.</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Associate Director — Quality Assurance <span class="current-badge">Current</span></div>
+          <div class="timeline-company">Moody's Analytics</div>
+        </div>
+        <div class="timeline-date">Jul 2025 — Present</div>
+      </div>
+      <div class="timeline-body">
+        Leading the QA function at Moody's Analytics, overseeing all quality assurance operations, coordinating with BAs and developers for monthly release cycles, and driving strategic improvements in testing practices.
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag">QA Strategy</span><span class="tag">Team Leadership</span><span class="tag">Stakeholder Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Assistant Director — Quality Assurance</div>
+          <div class="timeline-company">Moody's Analytics</div>
+        </div>
+        <div class="timeline-date">Jul 2021 — Jul 2025 · 4 yrs</div>
+      </div>
+      <div class="timeline-body">
+        Managed QA Team in close coordination with Business Analysts and Developers to perform QA Testing and UAT on monthly releases. Handled customer escalations and guided the production support team to resolve escalated tickets faster.
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag">QA Testing</span><span class="tag">UAT</span><span class="tag">Customer Escalations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Production Support Lead</div>
+          <div class="timeline-company">Moody's Analytics</div>
+        </div>
+        <div class="timeline-date">Apr 2020 — Jul 2021 · 1 yr 4 mos</div>
+      </div>
+      <div class="timeline-body">
+        Oversaw all production support aspects, developed business community relations, coordinated with infrastructure and release management teams, managed offshore vendor SLAs, and provided regular management status reports.
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag">Production Support</span><span class="tag">Incident Management</span><span class="tag">Vendor SLAs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Senior Production Support Analyst</div>
+          <div class="timeline-company">Moody's Analytics</div>
+        </div>
+        <div class="timeline-date">Apr 2017 — Apr 2020 · 3 yrs</div>
+      </div>
+      <div class="timeline-body">
+        Ran requirements gathering sessions with stakeholders, wrote test strategies with QA teams, collaborated with developers on system enhancements, and created traceability matrices to ensure complete release coverage.
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag">Requirements Gathering</span><span class="tag">Test Strategy</span><span class="tag">Traceability Matrix</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Production Support Analyst</div>
+          <div class="timeline-company">Moody's Analytics</div>
+        </div>
+        <div class="timeline-date">Aug 2015 — Apr 2017 · 1 yr 9 mos</div>
+      </div>
+      <div class="timeline-body">
+        Provided production support for Salesforce-based systems, ensuring operational continuity and resolving platform issues in coordination with development teams.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Product Support Engineer</div>
+          <div class="timeline-company">HCL Technologies</div>
+        </div>
+        <div class="timeline-date">Jan 2014 — Aug 2015 · 1 yr 8 mos</div>
+      </div>
+      <div class="timeline-body">
+        Worked as a Salesforce Administrator, supporting Sales Cloud and Service Cloud users with platform issues. Discovered passion for the Salesforce ecosystem here.
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag">Salesforce Admin</span><span class="tag">Sales Cloud</span><span class="tag">Service Cloud</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Lead CRM Operations</div>
+          <div class="timeline-company">IBM Global Process Services</div>
+        </div>
+        <div class="timeline-date">Jul 2011 — Jan 2014 · 2 yrs 7 mos</div>
+      </div>
+      <div class="timeline-body">
+        Repaired QuickBooks databases in Sybase, provided accounting and networking support, held weekly client meetings on process updates, and created dashboards for management reporting.
+        <div class="tags" style="margin-top:12px;">
+          <span class="tag">CRM Operations</span><span class="tag">Sybase</span><span class="tag">QuickBooks</span><span class="tag">Reporting</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Process Advisor</div>
+          <div class="timeline-company">Barclays Shared Services</div>
+        </div>
+        <div class="timeline-date">Mar 2010 — Jun 2011 · 1 yr 4 mos</div>
+      </div>
+      <div class="timeline-body">
+        Phone Banking Officer for Barclays Bank UK, providing sales and support for a full range of banking needs over the phone.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div>
+          <div class="timeline-role">Senior Customer Care Officer</div>
+          <div class="timeline-company">Convergys India Services</div>
+        </div>
+        <div class="timeline-date">Sep 2007 — Aug 2009 · 2 yrs</div>
+      </div>
+      <div class="timeline-body">
+        Delivered exceptional client support as a senior customer care officer, establishing a foundation of communication and service excellence that defined the career ahead.
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section>
-<h2>Let's Connect</h2>
-<div class="card">
-<p>📧 ashim.sarangi@yahoo.com</p>
-<p>📞 8882052999</p>
-</div>
+<div class="glow-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="certs-section">
+  <div class="section-label"><span>Certifications</span></div>
+  <h2 class="section-title reveal">Certified expertise.</h2>
+
+  <div class="certs-grid">
+    <div class="cert-card reveal">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">Salesforce Certified Administrator</div>
+        <div class="cert-issuer">Salesforce.com</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">⚡</div>
+      <div>
+        <div class="cert-name">Salesforce Certified Advanced Administrator</div>
+        <div class="cert-issuer">Salesforce.com</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">BSc Information Technology</div>
+        <div class="cert-issuer">Karnataka State Open University · 2004–2007</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="section-label" style="justify-content:center;"><span>Contact</span></div>
+    <h2 class="section-title reveal" style="text-align:center;">Let's build<br>something great.</h2>
+    <p class="reveal" style="color:var(--muted);font-size:1.05rem;line-height:1.7;text-align:center;">
+      Open to discussing innovative solutions, career opportunities, or simply connecting with like-minded professionals in the QA and Salesforce space.
+    </p>
+    <div class="contact-links reveal">
+      <a href="tel:8882052999" class="contact-link">
+        <span class="icon">📞</span>
+        <span>+91 888 205 2999</span>
+      </a>
+      <a href="mailto:ashim.sarangi@yahoo.com" class="contact-link">
+        <span class="icon">✉️</span>
+        <span>ashim.sarangi@yahoo.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/ashimsarangi" target="_blank" class="contact-link">
+        <span class="icon">💼</span>
+        <span>LinkedIn Profile</span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <footer>
-© 2026 Ashim Sarangi
+  <span>© 2026 Ashim Sarangi · Associate Director QA</span>
+  <span style="color:var(--accent);">Gurugram, Haryana, India</span>
 </footer>
 
 <script>
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}});
-});
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
 
-document.querySelectorAll("section").forEach(sec=>{
-sec.classList.add("hidden");
-observer.observe(sec);
-});
+  // PARTICLES
+  const particleContainer = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (6 + Math.random() * 14) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.opacity = Math.random() * 0.6;
+    if (Math.random() > 0.6) {
+      p.style.background = i % 3 === 0 ? '#00ff9d' : '#ff6b35';
+    }
+    particleContainer.appendChild(p);
+  }
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  const skillBars = document.querySelectorAll('.skill-bar');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        const bar = entry.target.querySelector?.('.skill-bar');
+        if (bar) bar.style.width = bar.dataset.width + '%';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(el => observer.observe(el));
+  timelineItems.forEach(el => observer.observe(el));
+
+  skillBars.forEach(bar => {
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) bar.style.width = bar.dataset.width + '%'; });
+    }, { threshold: 0.3 });
+    cardObserver.observe(bar.closest('.skill-card'));
+  });
+
+  // CARD GLOW FOLLOW
+  document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    });
+  });
 </script>
 
 </body>
